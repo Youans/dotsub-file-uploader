@@ -14,4 +14,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @author Youans Ezzat
  */
-public interface FileRepository extends JpaRepository{}
+public interface FileRepository{}
