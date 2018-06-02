@@ -9,9 +9,15 @@
  */
 package com.dotsub.fileuploader.repository;
 
+import com.dotsub.fileuploader.model.FileDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Youans Ezzat
  */
-public interface FileRepository{}
+@Repository
+public interface FileRepository extends JpaRepository<FileDetails,Long>{
+
+
+}

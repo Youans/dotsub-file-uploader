@@ -9,38 +9,53 @@
  */
 package com.dotsub.fileuploader.service;
 
+import com.dotsub.fileuploader.dto.FileDetailsDto;
+import com.dotsub.fileuploader.model.FileDetails;
+import com.dotsub.fileuploader.model.UploadedFile;
 import com.dotsub.fileuploader.repository.FileRepository;
+import com.dotsub.fileuploader.service.storage.StorageStrategyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Youans Ezzat
  */
 @Service public class FileService {
 
-    static Logger logger= LoggerFactory.getLogger(FileService.class);
+    static Logger logger = LoggerFactory.getLogger(FileService.class);
+
+    private StorageStrategyService storageService;
 
     private FileRepository fileRepository;
 
-    public FileService() {
+
+    public FileService(@Qualifier("localServerStorageStrategyService")  StorageStrategyService storageService, FileRepository fileRepository) {
+        this.storageService = storageService;
         this.fileRepository = fileRepository;
     }
-    // Should be moved to storage service
-    public void upload(byte[] bytes, String title, String description, Date creationDate) throws IOException {
-        logger.info("title "+ title+" desc "+description+"creationDate "+creationDate);
-        File file = new File("/uploads/");
-        file.createNewFile();
-        try (FileOutputStream fos = new FileOutputStream(file);) {
-            fos.write(bytes);
-        }
 
+    // Should be moved to storage service
+    public void uploadAndSave(MultipartFile file, String title, String description, Date creationDate) throws IOException {
+        logger.info("title " + title + " desc " + description + "creationDate " + creationDate);
+        String location=storageService.store(file);
+
+        UploadedFile uploadedFile=new UploadedFile(file.getOriginalFilename(),file.getSize(),file.getContentType(),location);
+        FileDetails fileDetails=new FileDetails(title,description,creationDate,uploadedFile);
+        uploadedFile.setFileDetails(fileDetails);
+
+        fileRepository.save(fileDetails);
 
     }
 
+    public List<FileDetails> listAll() {
+        return fileRepository.findAll();
+    }
 }

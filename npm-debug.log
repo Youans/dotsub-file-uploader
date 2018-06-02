@@ -1,0 +1,23 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/youans/.nvm/versions/node/v6.11.5/bin/node',
+1 verbose cli   '/home/youans/.nvm/versions/node/v6.11.5/bin/npm',
+1 verbose cli   'prune' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.5
+4 verbose config Skipping project config: /home/youans/.npmrc. (matches userconfig)
+5 verbose stack Error: ENOENT: no such file or directory, open '/home/youans/package.json'
+5 verbose stack     at Error (native)
+6 verbose cwd /home/youans/Projects/mondiamedia/file-uploader
+7 error Linux 4.13.0-43-generic
+8 error argv "/home/youans/.nvm/versions/node/v6.11.5/bin/node" "/home/youans/.nvm/versions/node/v6.11.5/bin/npm" "prune"
+9 error node v6.11.5
+10 error npm  v3.10.10
+11 error path /home/youans/package.json
+12 error code ENOENT
+13 error errno -2
+14 error syscall open
+15 error enoent ENOENT: no such file or directory, open '/home/youans/package.json'
+16 error enoent ENOENT: no such file or directory, open '/home/youans/package.json'
+16 error enoent This is most likely not a problem with npm itself
+16 error enoent and is related to npm not being able to find a file.
+17 verbose exit [ -2, true ]
