@@ -1,0 +1,50 @@
+<div class="container">
+    <h2>File Upload Form</h2>
+
+    <form name="form" novalidate (ngSubmit)="'form.$valid' && onSubmit()" enctype="multipart/form-data">
+      <div class="form-group required">
+        <label for="title" class="control-label">Title</label>
+        <input id="title" name="title" maxlength="300" type="text" [(ngModel)]="fileData.title"  class="form-control"  required/>
+      </div>
+
+      <div class="form-group required">
+        <label for="description" class="control-label">Description</label>
+        <textarea  [(ngModel)]="fileData.description" maxlength="1000"  class="form-control" id="description" name="description" required></textarea>
+      </div>
+
+      <div class="form-group required">
+        <label for="creationDate" class="control-label">Creation Date</label>
+        <input type="datetime-local" [(ngModel)]="fileData.creationDate" class="form-control" id="creationDate" name="creationDate" required/>
+      </div>
+
+      <div class="form-group required">
+        <label for="title" class="control-label">File</label>&nbsp;<span class="alert-info">Max file size is 100MB.</span>
+        <input type="file" (change)="onFileChange($event)" class="form-control" id="file" name="file" required/>
+      </div>
+
+      <div class="progress m-b-20" *ngIf="submitted && success==null">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+        [ngStyle]="{'width' : progressPercentage + '%' }"
+        attr.aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100">
+              <span id="percentage">({{progressPercentage}}%)</span>
+
+        </div>
+      </div>
+
+
+      <div class="alert alert-success" *ngIf="success==true">
+          <strong>Success!</strong>&nbsp;File uploaded sucessfully!
+      </div>
+      <div class="alert alert-danger" *ngIf="success==false">
+          <strong>Failed!</strong>&nbsp;Error Message : {{errorMessage}}
+      </div>
+      <br/>
+     <div class="text-center">
+        <button type="Submit" class="btn btn-success">Submit</button>
+        &nbsp;
+        <a href="/" class="btn btn-info">Reset</a>
+      </div>
+      <br/>
+      <br/>
+    </form>
+</div>

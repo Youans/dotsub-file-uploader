@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.m-b-20{margin-bottom: 20px;}
+.progress{height: 30px;}
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+/*input.ng-invalid {*/
+  /*background-color: #fff6f8;*/
+/*}*/
+/*!*input.ng-valid {*!*/
+  /*!*background-color: lightgreen;*!*/
+/*!*}*!*/
