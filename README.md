@@ -31,7 +31,7 @@ Go to [http://localhost:4200/](http://localhost:4200/)
 * [AngularJS](http://https://angularjs.org/) version 6.0.3 using NodeJS version 10.2.0
 
 ## Documentation
- - Swagger : [http://localhost:8080/1.0/swagger-ui.html](http://localhost:8080/1.0/swagger-ui.html/)]
+ - Swagger : [http://localhost:8080/1.0/swagger-ui.html](http://localhost:8080/1.0/swagger-ui.html/)
  - Class Reference : check Doc folder
 ## Versioning
 
