@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -38,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @author Youans Ezzat
  */
-@RunWith(SpringRunner.class) @SpringBootTest public class FileControllerTest {
+@RunWith(SpringRunner.class) @SpringBootTest(properties = "logging.enable.aop=false") public class FileControllerTest {
 
     private final String servicePath = "/api/file";
 

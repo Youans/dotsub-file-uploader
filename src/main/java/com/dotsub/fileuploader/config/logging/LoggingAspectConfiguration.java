@@ -10,16 +10,21 @@
 package com.dotsub.fileuploader.config.logging;
 
 import com.dotsub.fileuploader.aop.logging.LoggingAspect;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 
 /**
  * @author Youans Ezzat
  */
 @Configuration @EnableAspectJAutoProxy public class LoggingAspectConfiguration {
+    private final Environment env;
 
-    @Bean public LoggingAspect loggingAspect() {
+    public LoggingAspectConfiguration(Environment env) {
+        this.env = env;
+    }
+
+    @Bean @ConditionalOnProperty(name="logging.enable.aop",havingValue = "true") public LoggingAspect loggingAspect() {
         return new LoggingAspect();
     }
 }

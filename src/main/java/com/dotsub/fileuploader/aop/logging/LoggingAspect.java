@@ -23,6 +23,7 @@ public class LoggingAspect {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
+
     /**
      * Pointcut that matches all repositories, services and Web REST endpoints.
      */

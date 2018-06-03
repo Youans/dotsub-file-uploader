@@ -21,7 +21,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,7 +39,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Youans Ezzat
  */
-@RunWith(SpringRunner.class) @SpringBootTest public class FileServiceTest {
+@RunWith(SpringRunner.class) @SpringBootTest(properties = "logging.enable.aop=false") public class FileServiceTest {
 
     @Mock private StorageStrategyService storageService;
 
@@ -44,7 +47,7 @@ import static org.mockito.Mockito.*;
 
     @Autowired @InjectMocks private FileService fileService;
 
-    private MultipartFile validFile = validFile = new MockMultipartFile("validFile", "filename.txt", "text/plain", "hello".getBytes(StandardCharsets.UTF_8));
+    private MultipartFile validFile = validFile = new MockMultipartFile("file", "filename.txt", "text/plain", "hello".getBytes(StandardCharsets.UTF_8));
 
     private MultipartFile invalidFile = new MockMultipartFile("invalidFile", new byte[0]);
 

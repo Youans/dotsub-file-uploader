@@ -80,12 +80,4 @@ import java.util.List;
 
     }
 
-    /**
-     * List all list.
-     *
-     * @return the list
-     */
-    public List<FileDetails> listAll() {
-        return fileRepository.findAll();
-    }
 }

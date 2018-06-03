@@ -26,7 +26,7 @@ import java.util.*;
  */
 @Entity public class FileDetails {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Getter @Setter private long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Getter @Setter private long id;
 
     @Getter @Setter @Size(max=300) private String title;
 

@@ -23,7 +23,7 @@ import javax.persistence.*;
  */
 @Entity public class UploadedFile {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Getter @Setter private long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Getter @Setter private long id;
 
     @Getter @Setter private String orginalName;
 
