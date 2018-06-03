@@ -19,7 +19,7 @@ $ cd client
  
 Use either:
  
-$ yarn start
+$ yarn start // make sure using node version >=10.2.0
 or
 $ ng serve
  
