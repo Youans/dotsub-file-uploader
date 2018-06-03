@@ -31,7 +31,9 @@ Go to [http://localhost:4200/](http://localhost:4200/)
 * [Spring Boot](http://projects.spring.io/spring-boot/) version 2.0.2.RELEASE
 * [AngularJS](http://https://angularjs.org/) version 6.0.3 using NodeJS version 10.2.0
 
-
+## Documentation
+ - Swagger : [http://localhost:8080/](http://localhost:8080/1.0/swagger-ui.html/)]
+ - Class Reference : check Doc folder
 ## Versioning
 
 Current version : 1.0
@@ -39,9 +41,13 @@ Current version : 1.0
 ## Future Development
 **Client** :
  - Apply proper validation on each field
- - Add drop to upload functionality as in ![Alt Text](https://css-tricks.com/wp-content/uploads/2015/11/drag-drop-upload-1.gif) 
+ - Add drop to upload functionality as in following ![Alt Text](https://css-tricks.com/wp-content/uploads/2015/11/drag-drop-upload-1.gif) 
 
-
+**Server**
+ - Enhance exception handling and messages
+ - Enhance file naming strategy
+ - Add more unit test to cover more worst cases
+  
 ## Authors
 
 * **Youans Ezzat**
