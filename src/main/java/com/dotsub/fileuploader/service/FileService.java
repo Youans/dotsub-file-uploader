@@ -18,7 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -42,11 +44,14 @@ import java.util.List;
         this.fileRepository = fileRepository;
     }
 
-    // Should be moved to storage service
-    public void uploadAndSave(MultipartFile file, String title, String description, Date creationDate) throws IOException {
-        logger.info("title " + title + " desc " + description + "creationDate " + creationDate);
-        String location=storageService.store(file);
 
+    public void uploadAndSave(MultipartFile file, String title, String description, Date creationDate) throws IOException,IllegalArgumentException {
+        logger.info("title " + title + " desc " + description + "creationDate " + creationDate);
+        if(file==null || StringUtils.isEmpty(title) || StringUtils.isEmpty(description) || creationDate == null) {
+            throw new IllegalArgumentException("At least one parameter is invalid or not supplied");
+        }
+
+        String location=storageService.store(file);
         UploadedFile uploadedFile=new UploadedFile(file.getOriginalFilename(),file.getSize(),file.getContentType(),location);
         FileDetails fileDetails=new FileDetails(title,description,creationDate,uploadedFile);
         uploadedFile.setFileDetails(fileDetails);

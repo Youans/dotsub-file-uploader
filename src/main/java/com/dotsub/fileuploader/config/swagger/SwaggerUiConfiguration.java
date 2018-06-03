@@ -7,7 +7,7 @@
  * use it only in accordance with the terms of the license agreement
  * you entered into with Mondia Media Group GmbH.
  */
-package com.dotsub.fileuploader.config;
+package com.dotsub.fileuploader.config.swagger;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

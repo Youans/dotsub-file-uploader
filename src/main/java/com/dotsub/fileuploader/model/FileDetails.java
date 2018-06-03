@@ -38,4 +38,5 @@ import java.util.*;
         this.creationDate = creationDate;
         this.uploadedFiles = new LinkedHashSet<>(Arrays.asList(uploadedFiles));
     }
+    public FileDetails(){}
 }
