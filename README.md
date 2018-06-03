@@ -13,6 +13,8 @@ $ mvn spring-boot:run
 <b>Run Client</b>
 ```jshelllanguage
 $ cd client
+$ nvm use v10.2.0 //Switch node version to 10.2.0 - nvm > https://github.com/creationix/nvm 
+$ npm install 
  
 Use either:
  
