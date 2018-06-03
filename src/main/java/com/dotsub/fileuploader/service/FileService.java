@@ -28,25 +28,45 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * This class contains the business logic code of uploading file
+ * works as a router for storing via strategies check @{@link StorageStrategyService}
+ *
+ * @see StorageStrategyService
  * @author Youans Ezzat
  */
 @Service public class FileService {
 
-    static Logger logger = LoggerFactory.getLogger(FileService.class);
 
     private StorageStrategyService storageService;
 
     private FileRepository fileRepository;
 
-
+    /**
+     * Instantiates a new File service.
+     *
+     * @param storageService the storage service
+     * @param fileRepository the file repository
+     */
     public FileService(@Qualifier("localServerStorageStrategyService")  StorageStrategyService storageService, FileRepository fileRepository) {
         this.storageService = storageService;
         this.fileRepository = fileRepository;
     }
 
-
+    /**
+     * Pass a file to proper storage strategy in order to upload get the
+     * link to file and then pack an object of {@link FileDetails}
+     * with child {@link UploadedFile} and pass it to {@link FileRepository}
+     * in order to save.
+     *
+     * @param file         the file type {@link MultipartFile}
+     * @param title        the title type {@link String}
+     * @param description  the description type {@link String}
+     * @param creationDate the creation date type {@link Date}
+     * @throws IOException              If IO excpetions thrown
+     * @throws IllegalArgumentException If any parameter was invalid
+     */
     public void uploadAndSave(MultipartFile file, String title, String description, Date creationDate) throws IOException,IllegalArgumentException {
-        logger.info("title " + title + " desc " + description + "creationDate " + creationDate);
+
         if(file==null || StringUtils.isEmpty(title) || StringUtils.isEmpty(description) || creationDate == null) {
             throw new IllegalArgumentException("At least one parameter is invalid or not supplied");
         }
@@ -60,6 +80,11 @@ import java.util.List;
 
     }
 
+    /**
+     * List all list.
+     *
+     * @return the list
+     */
     public List<FileDetails> listAll() {
         return fileRepository.findAll();
     }

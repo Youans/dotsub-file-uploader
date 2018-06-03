@@ -1,0 +1,16 @@
+com.dotsub.fileuploader
+com.dotsub.fileuploader.aop.logging
+com.dotsub.fileuploader.config.exception
+com.dotsub.fileuploader.config.logging
+com.dotsub.fileuploader.config.swagger
+com.dotsub.fileuploader.constants.enums
+com.dotsub.fileuploader.dto
+com.dotsub.fileuploader.dto.mappers
+com.dotsub.fileuploader.function.rest
+com.dotsub.fileuploader.function.service
+com.dotsub.fileuploader.integeration.rest
+com.dotsub.fileuploader.model
+com.dotsub.fileuploader.repository
+com.dotsub.fileuploader.rest
+com.dotsub.fileuploader.service
+com.dotsub.fileuploader.service.storage

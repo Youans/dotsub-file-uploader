@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.Set;
 
 /**
+ * The type File details dto.
+ *
  * @author Youans Ezzat
  */
 public class FileDetailsDto {

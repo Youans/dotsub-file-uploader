@@ -16,6 +16,8 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
+ * The type Uploaded file dto.
+ *
  * @author Youans Ezzat
  */
 public class UploadedFileDto {

@@ -17,16 +17,20 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
+ * Dummy implementation of Amazon S3 file upload strategy
+ *
  * @author Youans Ezzat
  */
 @Service
 public class AmazonS3StorageStrategyService implements StorageStrategyService {
 
+    /**
+     * The Logger.
+     */
     static final Logger logger = LoggerFactory.getLogger(AmazonS3StorageStrategyService.class);
 
-    public String store(MultipartFile multipartFile) throws IOException {
+    public String store(MultipartFile multipartFile) {
             logger.info("Amazon S3 Implmentation...");
-
             return null;
     }
 }

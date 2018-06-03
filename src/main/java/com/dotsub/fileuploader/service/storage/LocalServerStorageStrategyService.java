@@ -1,12 +1,3 @@
-/*
- * Copyright 2018 Mondia Media Group GmbH. All rights reserved.
- *
- * This software is the confidential and proprietary information
- * of Mondia Media Group GmbH ("Confidential Information").
- * You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement
- * you entered into with Mondia Media Group GmbH.
- */
 package com.dotsub.fileuploader.service.storage;
 
 import org.slf4j.Logger;
@@ -20,24 +11,35 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
+ * Implementation of Local server storage strategy
+ *
  * @author Youans Ezzat
  */
-@Service
-public class LocalServerStorageStrategyService implements StorageStrategyService {
-    static final Logger logger = LoggerFactory.getLogger(AmazonS3StorageStrategyService.class);
+@Service public class LocalServerStorageStrategyService implements StorageStrategyService {
 
-    private String uploadLocation;
-    private LocalServerStorageStrategyService(@Value("${upload.location}") String uploadLocation){this.uploadLocation=uploadLocation;}
+    /**
+     * The Logger.
+     */
+    static final Logger logger = LoggerFactory.getLogger(LocalServerStorageStrategyService.class);
 
+    @Value("${upload.location}") private String uploadLocation;
+
+    /**
+     * Applying the real work of storing file on local server
+     * uses System.nanoTime() to achieve uniqueness of file and avoid
+     * overwriting
+     *
+     * @// TODO: 6/3/18 Enhance file naming code part
+     * @param multipartFile
+     * @return the uploaded file location
+     * @throws IOException
+     */
     public String store(MultipartFile multipartFile) throws IOException {
-        logger.info("Storing via Local Server");
-        final StringBuilder fileLocation=new StringBuilder(uploadLocation);
-
-        fileLocation.append(System.nanoTime()).append("_").append(multipartFile.getOriginalFilename().replaceAll(" ","_"));
-        logger.info("fileLocation "+fileLocation);
+        final StringBuilder fileLocation = new StringBuilder(uploadLocation);
+        fileLocation.append(System.nanoTime()).append("_").append(multipartFile.getOriginalFilename().replaceAll(" ", "_"));
         File file = new File(fileLocation.toString());
         file.createNewFile();
-        try (FileOutputStream fos = new FileOutputStream(file);) {
+        try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(multipartFile.getBytes());
         }
         return fileLocation.toString();

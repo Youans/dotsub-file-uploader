@@ -34,13 +34,27 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
+ * The type File controller test.
+ *
  * @author Youans Ezzat
  */
 @RunWith(SpringRunner.class) @SpringBootTest public class FileControllerTest {
 
     private final String servicePath = "/api/file";
 
-    final String TITLE_PARAM = "title", DESCRIPTION_PARAM = "description", CREATION_DATE_PARAM = "creationDate", FILE_PARAM = "file";
+    /**
+     * The Title param.
+     */
+    final String TITLE_PARAM = "title", /**
+     * The Description param.
+     */
+    DESCRIPTION_PARAM = "description", /**
+     * The Creation date param.
+     */
+    CREATION_DATE_PARAM = "creationDate", /**
+     * The File param.
+     */
+    FILE_PARAM = "file";
 
     private MockMvc fileControllerMVC;
 
@@ -52,12 +66,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
     private MockMultipartFile invalidFile = new MockMultipartFile("invalidFile", new byte[0]);
 
+    /**
+     * Sets up.
+     */
     @Before public void setUp() {
         MockitoAnnotations.initMocks(this);
         fileControllerMVC = MockMvcBuilders.standaloneSetup(fileController).build();
 
     }
 
+    /**
+     * Test with invalid multipart file.
+     *
+     * @throws Exception the exception
+     */
     @Test public void testWithInvalidMultipartFile() throws Exception {
         doThrow(IOException.class).when(fileService).uploadAndSave(eq(invalidFile),anyString(),anyString(),any(Date.class));
 
@@ -70,6 +92,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .andReturn();
     }
 
+    /**
+     * Test with valid data.
+     *
+     * @throws Exception the exception
+     */
     @Test public void testWithValidData() throws Exception {
         MvcResult mvcResult=fileControllerMVC.perform(multipart(servicePath)
                 .file(validFile)
@@ -80,6 +107,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .andReturn();
 
     }
+
+    /**
+     * Test with missing data.
+     *
+     * @throws Exception the exception
+     */
     @Test public void testWithMissingData() throws Exception {
         MvcResult mvcResult=fileControllerMVC.perform(multipart(servicePath)
                 .file(validFile)
@@ -88,6 +121,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
+
+    /**
+     * Test with invalid date format.
+     *
+     * @throws Exception the exception
+     */
     @Test public void testWithInvalidDateFormat() throws Exception {
         MvcResult mvcResult=fileControllerMVC.perform(multipart(servicePath)
                 .file(validFile)
@@ -97,6 +136,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .andExpect(status().isBadRequest())
                 .andReturn();
     }
+
+    /**
+     * Test with future date.
+     *
+     * @throws Exception the exception
+     */
     @Test(expected = NestedServletException.class) public void testWithFutureDate() throws Exception {
         MvcResult mvcResult=fileControllerMVC.perform(multipart(servicePath)
                 .file(validFile)

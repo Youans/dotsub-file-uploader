@@ -16,6 +16,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
+ * The uploaded file class has the metadata of the orginal file uploaded plus
+ * the new location where It was uploaded to
+ *
  * @author Youans Ezzat
  */
 @Entity public class UploadedFile {
@@ -32,6 +35,14 @@ import javax.persistence.*;
 
     @ManyToOne(fetch = FetchType.LAZY) @Getter @Setter private FileDetails fileDetails;
 
+    /**
+     * Instantiates a new Uploaded file.
+     *
+     * @param orginalName the orginal name
+     * @param sizeInBytes the size in bytes
+     * @param contentType the content type
+     * @param location    the location
+     */
     public UploadedFile(String orginalName, Long sizeInBytes, String contentType, String location) {
         this.orginalName = orginalName;
         this.sizeInBytes = sizeInBytes;

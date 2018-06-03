@@ -13,19 +13,32 @@ import com.dotsub.fileuploader.service.storage.StorageStrategyService;
 import lombok.Getter;
 
 /**
+ * The enum Storage template enum.
+ *
  * @author Youans Ezzat
  */
 public enum StorageTemplateEnum {
 
-    LOCAL(StorageStrategyService.class),
+    /**
+     * Local storage template enum.
+     */
+    LOCAL(StorageStrategyService.class), /**
+     * Amazon s 3 storage template enum.
+     */
     AMAZON_S3(StorageStrategyService.class);
 
     @Getter private Class<? extends StorageStrategyService> storageStrategyServiceClass;
 
-    private StorageTemplateEnum(Class<? extends StorageStrategyService> storageStrategyServiceClass) {
+    StorageTemplateEnum(Class<? extends StorageStrategyService> storageStrategyServiceClass) {
         this.storageStrategyServiceClass = storageStrategyServiceClass;
     }
 
+    /**
+     * Gets strategy enum by strategy service.
+     *
+     * @param storageStrategyServiceClass the storage strategy service class
+     * @return the strategy enum by strategy service
+     */
     public StorageTemplateEnum getStrategyEnumByStrategyService(Class<? extends StorageStrategyService> storageStrategyServiceClass) {
         for (StorageTemplateEnum strategyEnum : values()) {
             if (strategyEnum.storageStrategyServiceClass == storageStrategyServiceClass) {

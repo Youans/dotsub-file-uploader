@@ -19,12 +19,27 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
+ * The interface File details mapper.
+ *
  * @author Youans Ezzat
  */
 @Mapper(componentModel = "spring") public interface FileDetailsMapper {
 
-    public List<FileDetailsDto> toFileDetailsDtos(List<FileDetails> fileDetails);
-    public List<UploadedFileDto> toUploadedFilesDtos(LinkedHashSet<UploadedFile> uploadedFiles);
+    /**
+     * To file details dtos list.
+     *
+     * @param fileDetails the file details
+     * @return the list
+     */
+    List<FileDetailsDto> toFileDetailsDtos(List<FileDetails> fileDetails);
+
+    /**
+     * To uploaded files dtos list.
+     *
+     * @param uploadedFiles the uploaded files
+     * @return the list
+     */
+    List<UploadedFileDto> toUploadedFilesDtos(LinkedHashSet<UploadedFile> uploadedFiles);
 
 
 }

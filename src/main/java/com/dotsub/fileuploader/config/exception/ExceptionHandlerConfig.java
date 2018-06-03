@@ -12,6 +12,8 @@ package com.dotsub.fileuploader.config.exception;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
+ * The config of excpetion handling in the project
+ * // TODO: 6/3/18 Implment a proper exception handler
  * @author Youans Ezzat
  */
 //@RestControllerAdvice

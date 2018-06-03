@@ -24,6 +24,9 @@ import java.net.HttpURLConnection;
 import java.util.Date;
 
 /**
+ * Controller holding file upload endpoint
+ *
+ * @version 1.0
  * @author Youans Ezzat
  */
 @Api(description = "Contains file endpoints", produces = "application/json",tags = {"File"})
@@ -31,13 +34,26 @@ import java.util.Date;
 @Validated
 @RestController public class FileController {
 
-    static Logger logger = LoggerFactory.getLogger(FileService.class);
-
     private FileService fileService;
 
+    /**
+     * Instantiates a new File controller.
+     *
+     * @param fileService the file service
+     */
     public FileController(FileService fileService) {
         this.fileService = fileService;
     }
+
+    /**
+     * Upload response entity.
+     *
+     * @param file         the file type {@link MultipartFile}
+     * @param title        the title type {@link String}
+     * @param description  the description type {@link String}
+     * @param creationDate the creation date type {@link Date}
+     * @return the response entity
+     */
     @ApiOperation(value = "Upload file endpoint", notes = " A status code of "
             + HttpURLConnection.HTTP_NO_CONTENT + " is returned if no exception happened.")
     @PostMapping public ResponseEntity upload(
@@ -48,11 +64,9 @@ import java.util.Date;
         try {
             fileService.uploadAndSave(file, title, description, creationDate);
             return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
+        } catch (IllegalArgumentException | IOException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }

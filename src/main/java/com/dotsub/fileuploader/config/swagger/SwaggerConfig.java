@@ -24,6 +24,7 @@ import javax.servlet.ServletContext;
 
 /**
  * Swagger configuration for the project
+ *
  * @author Youans Ezzat
  */
 @Configuration @EnableSwagger2 public class SwaggerConfig {
@@ -31,6 +32,12 @@ import javax.servlet.ServletContext;
     private ServletContext servletContext;
     @Value("${info.build.version}")
     private String version;
+
+    /**
+     * Swagger person api 10 docket.
+     *
+     * @return the docket
+     */
     @Bean public Docket swaggerPersonApi10() {
 
         return new Docket(DocumentationType.SWAGGER_2).pathProvider(new RelativePathProvider(servletContext) {

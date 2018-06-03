@@ -14,8 +14,20 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
+ * The interface Storage strategy using strategy pattern to ease
+ * the ability of adding new upload strategy achieving
+ * open for extension closed for modification principle.
+ *
  * @author Youans Ezzat
  */
 public interface StorageStrategyService {
-    public String store(MultipartFile file) throws IOException;
+
+    /**
+     * Store file abstract method.
+     *
+     * @param file the file to store
+     * @return the uploaded file location
+     * @throws IOException
+     */
+    String store(MultipartFile file) throws IOException;
 }
