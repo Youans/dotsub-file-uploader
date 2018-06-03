@@ -3,13 +3,10 @@
 Simple file uploader form using AngularJS to upload file to Spring Boot appliaction
 
 ## Getting Started
-Go to project and run :
-```
-
-```
-In your file.js run the following
 
 <b>Run Server</b>
+ 
+Go to project and run :
 ```jshelllanguage
 $ mvn spring-boot:run
 ```
